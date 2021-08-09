@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateTodo"
+    android:background="@color/PrimaryDark">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/PrimaryDark"
+        app:titleTextColor="@color/white"
+        app:title="Create a Todo" />
+
+    <RelativeLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:padding="16dp"
+        android:gravity="start">
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Primary"
+            android:textColor="@color/white"
+            android:fontFamily="@font/regular"
+            android:padding="16dp"
+            android:hint="Walk the dog..."
+            android:textColorHint="@color/PrimaryDark"/>
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_below="@id/edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:checked="false"
+            android:text="Mark as important"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/submit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/edit_text"
+            android:backgroundTint="@color/Secondary"
+            android:text="CREATE TODO"
+            android:layout_marginLeft="16dp"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
