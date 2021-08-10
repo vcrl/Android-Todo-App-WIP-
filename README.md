@@ -12,7 +12,7 @@ Chaque tâche que vous complétez en appuyant sur leur checkbox sont archivées 
 Vous pouvez les retrouvez et les supprimer si besoin.
 
 ## Utilisation
-https://dev.vruel.fr/todo_video/todo_video.mp4
+(gif incoming)
 
 ## Déploiement
 L'application n'est pour le moment pas déployé sur le Google Play Store mais le sera prochainement.
