@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -19,6 +20,7 @@ import com.example.todoapp.blueprints.Todo
 import com.example.todoapp.constants.Constants
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import java.util.ArrayList
 
 class TodoList : AppCompatActivity(), CompoundButton.OnCheckedChangeListener, View.OnClickListener,
 NavigationView.OnNavigationItemSelectedListener {
@@ -43,7 +45,7 @@ NavigationView.OnNavigationItemSelectedListener {
         var createTodo = findViewById<FloatingActionButton>(R.id.floatingActionBtn)
         createTodo.setOnClickListener(this)
 
-        /* Drawer Layout */
+        /* DRAWER LAYOUT */
         var drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         // Link toggle to the drawerLayout, for it to know which drawerLayout to act on
@@ -53,17 +55,14 @@ NavigationView.OnNavigationItemSelectedListener {
         // Add a button on the left toolbar to open the drawer
         // Si il y a un ActionBarDawerToggle, icone = 3 barres !
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        /**/
 
         // Get clicks inside the menu
         var navView = findViewById<NavigationView>(R.id.nav_view)
         navView.setNavigationItemSelectedListener(this)
 
         /* Recycler View */
-        todos = mutableListOf<Todo>(
-            Todo("Faire des courses", "", true, false),
-            Todo("Coder une application", "", false, true),
-            Todo("Caresser Jules", "", false, false),
-        )
+        todos = mutableListOf<Todo>()
 
         todosBin = mutableListOf<Todo>()
 
@@ -76,23 +75,28 @@ NavigationView.OnNavigationItemSelectedListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        /* Creates the menu */
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        /* When OptionsItem are Clicked */
         if (toggle.onOptionsItemSelected(item)){
+            /* If it's an item from toggle */
             return true
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun onCheckedChanged(checkbox: CompoundButton?, isChecked: Boolean) {
+        /* When item is checked */
         if(checkbox!!.tag != null){
             checkTodo(checkbox!!.tag as Int)
         }
     }
 
     private fun checkTodo(todoId : Int){
+        /* Handles checkboxes */
         val todo = todos[todoId]
         todo.checked = true
         todos.removeAt(todoId)
@@ -101,6 +105,7 @@ NavigationView.OnNavigationItemSelectedListener {
     }
 
     override fun onClick(view: View?) {
+        /* Handles clicks from the Activity */
         when(view?.id){
             R.id.floatingActionBtn -> {
                 openCreateTodoActivity()
@@ -109,6 +114,7 @@ NavigationView.OnNavigationItemSelectedListener {
     }
 
     private fun openCreateTodoActivity(){
+        /* Opens CreateTodo Activity */
         val intent = Intent(this, CreateTodo::class.java)
         startActivityForResult(intent, Constants.REQUEST_CREATE_TODO)
     }
@@ -125,21 +131,28 @@ NavigationView.OnNavigationItemSelectedListener {
     }
 
     private fun processCreateTodoResult(data: Intent?){
+        /* Processes data from startActivityForResult -> onActivityResult */
         var todoContent = data?.getStringExtra(Constants.TODO_CONTENT)
         var todoImportant = data?.getBooleanExtra(Constants.TODO_IMPORTANT, false)
         var todo = Todo(todoContent.toString(),"", false, todoImportant!!)
         todos.add(0, todo)
         adapterList.notifyDataSetChanged()
-        Toast.makeText(this, "Your todo has been created.", Toast.LENGTH_LONG).show()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        /* Item clicks from Navigation Drawer */
         when(item.itemId){
             R.id.navItem1 -> {
-                Toast.makeText(this, "Clicked!", Toast.LENGTH_LONG).show()
+                openCompletedTodosActivity()
             }
         }
         // True means we handled the click
         return true
+    }
+
+    private fun openCompletedTodosActivity(){
+        var intent = Intent(this, CompletedTodosList::class.java)
+        intent.putParcelableArrayListExtra(Constants.COMPLETED_TODOS_LIST, todosBin as ArrayList<out Parcelable>)
+        startActivity(intent)
     }
 }

@@ -13,6 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/PrimaryDark"
         app:titleTextColor="@color/white"
+        android:theme="@style/Theme.WhiteBackArrow"
         app:title="Create a Todo" />
 
     <RelativeLayout

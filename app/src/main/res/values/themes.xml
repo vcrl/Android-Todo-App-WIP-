@@ -12,12 +12,15 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:homeAsUpIndicator">@drawable/outline_menu_white_24</item>
 
     </style>
 
     <style name="Theme.WhiteMenuIcons" parent="android:Theme.Holo">
         <item name="android:homeAsUpIndicator">@drawable/outline_menu_white_24</item>
+    </style>
+
+    <style name="Theme.WhiteBackArrow" parent="android:Theme.Holo">
+        <item name="android:homeAsUpIndicator">@drawable/outline_arrow_back_24</item>
     </style>
 
 

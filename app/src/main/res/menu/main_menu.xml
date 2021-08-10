@@ -4,8 +4,8 @@
 
     <item
         app:showAsAction="always"
-        android:title="Archived Todos"
-        android:icon="@drawable/outline_menu_white_24"
+        android:title="Delete Todos"
+        android:icon="@drawable/outline_delete_white_24"
         android:iconTint="@color/white" />
 
 </menu>

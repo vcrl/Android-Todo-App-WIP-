@@ -10,8 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoApp">
         <activity
+            android:name=".CompletedTodosList"
+            android:exported="true"
+            android:parentActivityName=".TodoList"/>
+        <activity
             android:name=".CreateTodo"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".TodoList"/>
         <activity
             android:name=".TodoList"
             android:exported="true">
