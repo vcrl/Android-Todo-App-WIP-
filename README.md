@@ -12,7 +12,8 @@ Chaque tâche que vous complétez en appuyant sur leur checkbox sont archivées 
 Vous pouvez les retrouvez et les supprimer si besoin.
 
 ## Utilisation
-![todo_video_SparkVideo](https://user-images.githubusercontent.com/67955344/128849468-a22629b7-5413-43a5-a539-766eb0f6a02a.gif)
+![todo_video](https://user-images.githubusercontent.com/67955344/128851050-41f853a4-2972-4d54-a9b0-6d6eec09b5fd.gif)
+
 
 ## Déploiement
 L'application n'est pour le moment pas déployé sur le Google Play Store mais le sera prochainement.
