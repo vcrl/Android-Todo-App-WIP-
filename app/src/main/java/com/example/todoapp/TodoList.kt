@@ -12,6 +12,7 @@ import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,32 +21,38 @@ import com.example.todoapp.blueprints.Todo
 import com.example.todoapp.constants.Constants
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import java.util.ArrayList
 
 class TodoList : AppCompatActivity(), CompoundButton.OnCheckedChangeListener, View.OnClickListener,
 NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var toolbar : Toolbar
+    lateinit var coordinatorLayout : CoordinatorLayout
+    lateinit var toggle : ActionBarDrawerToggle
 
     lateinit var adapterList : RvAdapter_List
 
     lateinit var todos : MutableList<Todo>
     lateinit var todosBin : MutableList<Todo>
 
-    lateinit var toggle : ActionBarDrawerToggle
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todolist)
 
+        /* Layout */
         toolbar = findViewById(R.id.toolbar)
+        var createTodo = findViewById<FloatingActionButton>(R.id.floatingActionBtn)
+        coordinatorLayout = findViewById(R.id.coordinator_layout)
+
+        /* Toolbar */
         toolbar.title = ""
         setSupportActionBar(toolbar)
 
-        var createTodo = findViewById<FloatingActionButton>(R.id.floatingActionBtn)
+        /* Listeners */
         createTodo.setOnClickListener(this)
 
-        /* DRAWER LAYOUT */
+        /* Drawer Layout */
         var drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         // Link toggle to the drawerLayout, for it to know which drawerLayout to act on
@@ -55,23 +62,19 @@ NavigationView.OnNavigationItemSelectedListener {
         // Add a button on the left toolbar to open the drawer
         // Si il y a un ActionBarDawerToggle, icone = 3 barres !
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        /**/
 
         // Get clicks inside the menu
         var navView = findViewById<NavigationView>(R.id.nav_view)
         navView.setNavigationItemSelectedListener(this)
 
-        /* Recycler View */
+        /* Recycler View && Lists */
         todos = mutableListOf<Todo>()
-
         todosBin = mutableListOf<Todo>()
-
+        //
         adapterList = RvAdapter_List(todos, this, this)
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapterList
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -102,6 +105,8 @@ NavigationView.OnNavigationItemSelectedListener {
         todos.removeAt(todoId)
         todosBin.add(0, todo)
         adapterList.notifyDataSetChanged()
+
+        Snackbar.make(coordinatorLayout, "Todo '${todo.content}' have been marked as completed", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onClick(view: View?) {
