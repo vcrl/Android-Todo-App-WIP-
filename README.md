@@ -12,8 +12,7 @@ Chaque tâche que vous complétez en appuyant sur leur checkbox sont archivées 
 Vous pouvez les retrouvez et les supprimer si besoin.
 
 ## Utilisation
-![todo_video(2)](https://user-images.githubusercontent.com/67955344/128851350-af31edaa-4842-4dcd-9e38-c69476f70c45.gif)
-
+![mytodos](https://user-images.githubusercontent.com/67955344/128853191-fd02e311-61c9-41bf-a47d-627f6003c805.png)
 
 ## Déploiement
 L'application n'est pour le moment pas déployé sur le Google Play Store mais le sera prochainement.
