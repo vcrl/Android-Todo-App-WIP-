@@ -1,4 +1,4 @@
-# (FR) - Application Android Notepad
+# (FR) - Application Android myTodos
 
 L'application myTodos sert à booster votre ppductivité en ayant accès à une Todo-list rapide d'utilisation et droit-au-but s'agissant de la création de tâches.
 
