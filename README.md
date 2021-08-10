@@ -12,7 +12,7 @@ Chaque tâche que vous complétez en appuyant sur leur checkbox sont archivées 
 Vous pouvez les retrouvez et les supprimer si besoin.
 
 ## Utilisation
-![todo_video](https://user-images.githubusercontent.com/67955344/128851050-41f853a4-2972-4d54-a9b0-6d6eec09b5fd.gif)
+![todo_video(1)](https://user-images.githubusercontent.com/67955344/128851195-8c77cdb6-cf7f-4b2b-ab40-8d711e02547c.gif)
 
 
 ## Déploiement
