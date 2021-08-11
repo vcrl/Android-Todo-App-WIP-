@@ -30,6 +30,7 @@ data class Todo (
     }
 
     companion object CREATOR : Parcelable.Creator<Todo> {
+        private const val serialVersionUID : Long = 74859612365
         override fun createFromParcel(parcel: Parcel): Todo {
             return Todo(parcel)
         }

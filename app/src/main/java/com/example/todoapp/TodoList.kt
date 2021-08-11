@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.adapter.RvAdapter_List
 import com.example.todoapp.blueprints.Todo
 import com.example.todoapp.constants.Constants
+import com.example.todoapp.utils.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -68,8 +69,13 @@ NavigationView.OnNavigationItemSelectedListener {
         navView.setNavigationItemSelectedListener(this)
 
         /* Recycler View && Lists */
-        todos = mutableListOf<Todo>()
-        todosBin = mutableListOf<Todo>()
+        todos = mutableListOf()
+        for (todo in loadTodos(this)){
+            if (!todo.checked){
+                todos.add(todo)
+            }
+        }
+        todosBin = loadCompletedTodos(this)
         //
         adapterList = RvAdapter_List(todos, this, this)
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
@@ -103,6 +109,7 @@ NavigationView.OnNavigationItemSelectedListener {
         val todo = todos[todoId]
         todo.checked = true
         todos.removeAt(todoId)
+        markTodoAsChecked(this, todo)
         todosBin.add(0, todo)
         adapterList.notifyDataSetChanged()
 
@@ -140,6 +147,7 @@ NavigationView.OnNavigationItemSelectedListener {
         var todoContent = data?.getStringExtra(Constants.TODO_CONTENT)
         var todoImportant = data?.getBooleanExtra(Constants.TODO_IMPORTANT, false)
         var todo = Todo(todoContent.toString(),"", false, todoImportant!!)
+        persistData(this, todo)
         todos.add(0, todo)
         adapterList.notifyDataSetChanged()
     }

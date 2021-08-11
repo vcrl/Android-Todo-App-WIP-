@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.adapter.RvAdapter_List
 import com.example.todoapp.blueprints.Todo
 import com.example.todoapp.constants.Constants
+import com.example.todoapp.utils.deleteTodo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CompletedTodosList : AppCompatActivity(), CompoundButton.OnCheckedChangeListener, View.OnClickListener {
@@ -52,10 +53,7 @@ class CompletedTodosList : AppCompatActivity(), CompoundButton.OnCheckedChangeLi
         recyclerView.adapter = adapter
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
+
 
     override fun onCheckedChanged(checkbox: CompoundButton?, checked: Boolean) {
         if (checked){
@@ -70,10 +68,11 @@ class CompletedTodosList : AppCompatActivity(), CompoundButton.OnCheckedChangeLi
             R.id.delete_btn -> {
                 for (id in toDeleteTodos){
                     todosToDisplay.removeAt(id)
+                    deleteTodo(this, completedTodosList[id])
                     adapter.notifyDataSetChanged()
                     toggleDeleteBtn(false)
                 }
-                Toast.makeText(this, "${toDeleteTodos.size} todos have been deleted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "${toDeleteTodos.size} todo(s) have been deleted", Toast.LENGTH_SHORT).show()
                 clearList(toDeleteTodos)
             }
         }

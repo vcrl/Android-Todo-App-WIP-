@@ -10,22 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoApp">
         <activity
-            android:name=".CompletedTodosList"
+            android:name=".SplashScreen"
             android:exported="true"
-            android:parentActivityName=".TodoList"/>
-        <activity
-            android:name=".CreateTodo"
-            android:exported="true"
-            android:parentActivityName=".TodoList"/>
-        <activity
-            android:name=".TodoList"
-            android:exported="true">
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CompletedTodosList"
+            android:exported="true"
+            android:parentActivityName=".TodoList" />
+        <activity
+            android:name=".CreateTodo"
+            android:exported="true"
+            android:parentActivityName=".TodoList" />
+        <activity
+            android:name=".TodoList"
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>
