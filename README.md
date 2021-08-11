@@ -1,4 +1,5 @@
 # (FR) - Application Android myTodos
+![feature_graphic](https://user-images.githubusercontent.com/67955344/129019087-9196e873-369d-4313-880e-e7a57a0f3c08.png)
 
 L'application myTodos sert à booster votre ppductivité en ayant accès à une Todo-list rapide d'utilisation et droit-au-but s'agissant de la création de tâches.
 
